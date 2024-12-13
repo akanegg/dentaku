@@ -21,9 +21,14 @@ public class Engine implements ActionListener {
 		System.out.println(key); //コンソールに表示される
 		dis1.setText(text); //計算機に表示される
 		
+		if(key.charAt(0) >= '0' && key.charAt(0) <= '9') {
+			text = dis1.getText() + key;
+			System.out.println("***" + key + " " + text + "?");
+				
+			dis1.setText(text);
+			
+		}
+		
 	}
-	
-	
-
 }
 
