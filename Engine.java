@@ -1,16 +1,16 @@
-package jp.ac.meiseiu.stu.j225012.HitBlow;
+package test;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JTextField;
+import javax.swing.JTextArea;
 
 public class Engine implements ActionListener {
 	
-	private JTextField dis1;
+	private JTextArea dis2;
 
-	public Engine(JTextField dis1) {
-		this.dis1 = dis1;
+	public Engine(JTextArea dis22) {
+		this.dis2 = dis22;
 	}
 
 	@Override
@@ -18,17 +18,20 @@ public class Engine implements ActionListener {
 		String key = e.getActionCommand();
 		String text = "";
 		
-		System.out.println(key); //コンソールに表示される
-		dis1.setText(text); //計算機に表示される
+		System.out.println(key);//コンソールに表示される
+		dis2.setText(text);//計算機に表示される
 		
 		if(key.charAt(0) >= '0' && key.charAt(0) <= '9') {
-			text = dis1.getText() + key;
+			text = dis2.getText() + key;
 			System.out.println("***" + key + " " + text + "?");
 				
-			dis1.setText(text);
+			dis2.setText(text);
 			
 		}
-		
+		dis2.setText(text);	
 	}
+	
+	
+
 }
 

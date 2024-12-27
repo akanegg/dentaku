@@ -10,11 +10,11 @@ import javax.swing.JTextArea;
 public class Frame {
 	private JFrame frame;
 	private JTextArea dis1, dis2;
-	//private Buttons buttons;
-	//private HBgame hbgame;
+	private Buttons buttons;
+	private HBgame game;
 	
 	public Frame() {
-		//game = new HBGame();
+		game = new HBgame();
 		board();
 	}
 	
@@ -36,6 +36,7 @@ public class Frame {
 		JScrollPane scrollPane1 = new JScrollPane(dis1);
 		panel.add(scrollPane1);
 		
+		
 		//数字入力パネルの作成
 		dis2 = new JTextArea(1,30); //十行三十列
 		dis2.setEditable(false);
@@ -43,8 +44,8 @@ public class Frame {
 		panel.add(scrollPane2);
 		
 		//ボタンパネルの作成
-		//buttons = new Buttons(game,dis1,dis2);
-		//panel.add(buttons.getPanel());
+		buttons = new Buttons(game, dis1, dis2);
+		panel.add(buttons.getPanel());
 		
 		frame.add(panel);
 		frame.setVisible(true);

@@ -1,4 +1,4 @@
-package jp.ac.meiseiu.stu.j225104.Kari;
+package test;
 
 public class Main {
 
