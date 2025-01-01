@@ -6,11 +6,14 @@ import java.awt.event.ActionListener;
 import javax.swing.JTextArea;
 
 public class Engine implements ActionListener {
-	
+	private HBgame game;
+	private JTextArea dis1;
 	private JTextArea dis2;
 
-	public Engine(JTextArea dis22) {
-		this.dis2 = dis22;
+	public Engine(HBgame game, JTextArea dis1, JTextArea dis2) {
+		this.game = game;
+		this.dis1 = dis1;
+		this.dis2 = dis2;
 	}
 
 	public void actionPerformed(ActionEvent e) {
@@ -30,8 +33,15 @@ public class Engine implements ActionListener {
 	        dis2.setText(text);  // 更新されたテキストを表示
 	    }
 	    
+	    //確定機能
+	    
+	    
+	    //削除機能
+	    
+	    
+	    //クリア機能
+	    
 	}
 	
-
 }
 
