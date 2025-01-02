@@ -7,6 +7,7 @@ import java.util.List;
 public class HBgame {
 	private String player2Num;  // コンピュータが選んだ3桁の数字
     private int count;  // プレイヤーの試した回数
+    private boolean gameend;
 
     public HBgame() {
         startGame();
@@ -16,6 +17,7 @@ public class HBgame {
     public void startGame() {
     	player2Num = player2();
     	count = 0;
+    	gameend = false;
     }
 
     // 重複しない3桁の数字を生成
@@ -54,16 +56,19 @@ public class HBgame {
             }
         }
 
-        // 結果を返す
+        // 正解
         if (hit == 3) {
+        	gameend = true;  // ゲーム終了
             return "おめでとう！" + (count-1) + "ターン 答えは: " + player2Num + "でした\n";
         }
+        
+        // 不正解
+        if (count == 10 && hit != 3) {
+            gameend = true;  // ゲーム終了
+            return "残念！答えは: " + player2Num + " でした\n";
+        }
+        
         return count + "ターン" + ": " + player1 + " -> " + hit + " Hit, " + blow + " Blow\n";
-    }
-
-    // 正解のターゲット番号を返す
-    public String getPlayer2Num() {
-        return player2Num;
     }
 }
 
