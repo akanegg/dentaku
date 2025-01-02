@@ -59,7 +59,7 @@ public class Buttons extends JPanel {
         JButton bDel = new JButton("削除");
         add(bDel);
         
-        engine = new Engine(dis2);
+        engine = new Engine(game, dis1, dis2);
         b0.addActionListener(engine);
 		b1.addActionListener(engine);
 		b2.addActionListener(engine);
