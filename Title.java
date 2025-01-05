@@ -27,7 +27,7 @@ public class Title {
         frame.setVisible(true);
     }
 
-    private static JPanel createTitlePanel(JFrame frame) {
+    public static JPanel createTitlePanel(JFrame frame) {
         // タイトル画面のパネル
         CustomPanel titlePanel = new CustomPanel();
         titlePanel.setLayout(new BorderLayout());
