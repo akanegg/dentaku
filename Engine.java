@@ -44,9 +44,9 @@ public class Engine implements ActionListener {
                 int count = game.getCount();
                 if (count <= 10) {  // 最大ターン数は10
                     String number = text;
-                    int high = game.getHigh();  // ゲームクラスからヒット数
-                    int low = game.getLow();    // ゲームクラスからブロー数
-                    gui.updateTable(count, number, high, low);
+                    int hit = game.getHit();  // ゲームクラスからヒット数
+                    int blow = game.getBlow();    // ゲームクラスからブロー数
+                    gui.updateTable(count, number, hit, blow);
                 }
             }
         }
