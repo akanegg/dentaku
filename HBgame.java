@@ -68,11 +68,11 @@ public class HBgame {
         return count;
     }
 
-    public int getHigh() {
+    public int getHit() {
         return hit;
     }
 
-    public int getLow() {
+    public int getBlow() {
         return blow;
     }
 
