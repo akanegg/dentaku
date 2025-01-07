@@ -17,18 +17,46 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 public class GameGUI extends JPanel {
-
+	
+	private JPanel clearPanel;
+	private JPanel buttonsPanel;
+	
     private static final long serialVersionUID = 1L;
     private JTable table;
     private JLabel dis;
     
     private HBgame game;
+    
 
     public GameGUI(Change change) {
         setLayout(null); 
         
      // ゲームインスタンス作成
         game = new HBgame();
+        
+     // ゲームクリアのパネルを作成
+        clearPanel = new JPanel();
+        clearPanel.setBounds(0, 0, 600, 470);
+        clearPanel.setBackground(new Color(0, 0, 0, 180));  // 半透明の黒背景
+        clearPanel.setLayout(null);
+        
+
+        JLabel clearLabel = new JLabel("CLEAR!", SwingConstants.CENTER);
+        clearLabel.setFont(new Font("Arial", Font.BOLD, 40));
+        clearLabel.setForeground(Color.WHITE);
+        clearLabel.setBounds(150, 200, 300, 50);
+        clearPanel.add(clearLabel);
+        
+        JButton bRe = new JButton("タイトル画面へ");
+        bRe.setBackground(UIManager.getColor("Button.light"));
+        bRe.setFont(new Font("HGS明朝B", Font.PLAIN, 15));
+        bRe.setVerticalAlignment(SwingConstants.BOTTOM);
+        clearPanel.add(bRe);
+
+        // 初期状態ではクリア画面を非表示
+        clearPanel.setVisible(false);
+
+        add(clearPanel);
 
         // テーブル作成
         table = new JTable();
@@ -84,7 +112,7 @@ public class GameGUI extends JPanel {
         add(dis);
 
         // ボタンの作成とアクション設定
-        JPanel buttonsPanel = new JPanel();
+        buttonsPanel = new JPanel();
         buttonsPanel.setBackground(SystemColor.window);
         buttonsPanel.setBorder(new LineBorder(new Color(255, 255, 255), 3, true));
         add(buttonsPanel, BorderLayout.SOUTH);
@@ -176,7 +204,11 @@ public class GameGUI extends JPanel {
 		b9.addActionListener(engine);
 		bCheck.addActionListener(engine);
 		bDelete.addActionListener(engine);
+		
+	
+		
     }
+    
 
     // テーブルの更新メソッド
     public void updateTable(int count, String number, int hit, int blow) {
@@ -186,4 +218,11 @@ public class GameGUI extends JPanel {
         model.setValueAt(hit, count, 2);
         model.setValueAt(blow, count, 3);
     }
+    public void showClearScreen() {
+        clearPanel.setVisible(true);  // クリア画面を表示
+        table.setVisible(false);
+        buttonsPanel.setVisible(false);
+    }
+    
+    
 }
