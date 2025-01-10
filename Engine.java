@@ -48,6 +48,12 @@ public class Engine implements ActionListener {
                     int blow = game.getBlow();    // ゲームクラスからブロー数
                     gui.updateTable(count, number, hit, blow);
                 }
+
+                // ヒットが3個になった場合、クリア画面に遷移
+                if (game.getHit() == 3) {
+                    gui.showClearScreen();
+                }
+                
             }
         }
 
