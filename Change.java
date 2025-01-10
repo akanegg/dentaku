@@ -20,11 +20,13 @@ public class Change {
 
         // 各画面を作成
         Title title = new Title(this);
-        GameGUI gamegui = new GameGUI(this); 
+        GameGUI gamegui = new GameGUI(this);
+        GameRulesPanel rules = new GameRulesPanel(this);
 
         // フレームにパネルを追加
         cardPanel.add(title, "Title");
         cardPanel.add(gamegui, "GameGUI");
+        cardPanel.add(rules, "Rules");
 
         // 初期画面をタイトル画面に設定
         showScreen("TitleScreen");
