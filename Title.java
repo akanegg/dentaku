@@ -40,6 +40,11 @@ public class Title extends JPanel {
         JButton startButton = new JButton("Start");
         startButton.setFont(new Font("OCR A Extended", Font.BOLD, 20));
         buttonPanel.add(startButton);
+        
+        // Game Rulesボタン
+        JButton optionButton = new JButton("Game Rules");
+        optionButton.setFont(new Font("OCR A Extended", Font.BOLD, 20));
+        buttonPanel.add(optionButton);
 
         titlePanel.add(buttonPanel, BorderLayout.SOUTH);
 
@@ -48,6 +53,14 @@ public class Title extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 // ゲーム画面に切り替え
             	change.showScreen("GameGUI");
+            }
+        });
+        
+     // Game Rulesボタンのアクションリスナー
+        optionButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // GameRulesPanelに切り替え
+            	change.showScreen("Rules");
             }
         });
 
