@@ -5,6 +5,8 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.SystemColor;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -19,6 +21,7 @@ import javax.swing.table.DefaultTableModel;
 public class GameGUI extends JPanel {
 	
 	private JPanel clearPanel;
+	private JPanel failurePanel;
 	private JPanel buttonsPanel;
 	
     private static final long serialVersionUID = 1L;
@@ -34,24 +37,21 @@ public class GameGUI extends JPanel {
      // ゲームインスタンス作成
         game = new HBgame();
         
+        String correctAnswer = game.getPlayer2Num(); 
+        
      // ゲームクリアのパネルを作成
         clearPanel = new JPanel();
         clearPanel.setBounds(0, 0, 600, 470);
-        clearPanel.setBackground(new Color(0, 0, 0, 180));  // 半透明の黒背景
+        clearPanel.setBackground(new Color(0, 0, 0, 120));  // 半透明の黒背景
         clearPanel.setLayout(null);
         
 
-        JLabel clearLabel = new JLabel("CLEAR!", SwingConstants.CENTER);
-        clearLabel.setFont(new Font("Arial", Font.BOLD, 40));
+        JLabel clearLabel = new JLabel("おめでとう!  " + correctAnswer + "でした。", SwingConstants.CENTER);
+        clearLabel.setFont(new Font("HGS明朝B", Font.PLAIN, 35));
         clearLabel.setForeground(Color.WHITE);
-        clearLabel.setBounds(150, 200, 300, 50);
+        clearLabel.setBounds(100, 200, 450, 50);
         clearPanel.add(clearLabel);
-        
-        JButton bRe = new JButton("タイトル画面へ");
-        bRe.setBackground(UIManager.getColor("Button.light"));
-        bRe.setFont(new Font("HGS明朝B", Font.PLAIN, 15));
-        bRe.setVerticalAlignment(SwingConstants.BOTTOM);
-        clearPanel.add(bRe);
+       
 
         // 初期状態ではクリア画面を非表示
         clearPanel.setVisible(false);
@@ -223,6 +223,6 @@ public class GameGUI extends JPanel {
         table.setVisible(false);
         buttonsPanel.setVisible(false);
     }
-    
+   
     
 }
