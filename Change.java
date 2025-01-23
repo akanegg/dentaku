@@ -43,7 +43,6 @@ public class Change {
     
     public void showScreen2(String screenName, int digit) {
         if ("GameGUI".equals(screenName)) {
-            cardPanel.remove(1); // GameGUIの位置を削除
             cardPanel.add(new GameGUI(this, digit), "GameGUI"); // 新しい桁数で再生成
         }
         showScreen(screenName);
