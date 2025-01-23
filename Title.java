@@ -1,5 +1,3 @@
-package test2;
-
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
@@ -51,8 +49,8 @@ public class Title extends JPanel {
         // Startボタンのアクションリスナー
         startButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                // ゲーム画面に切り替え
-            	change.showScreen("GameGUI");
+                // 難易度選択画面に切り替え
+            	change.showScreen("Select");
             }
         });
         
