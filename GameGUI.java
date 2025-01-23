@@ -64,8 +64,8 @@ public class GameGUI extends JPanel {
         failurePanel.add(failureLabel);
 
        // タイトルへ戻るボタン
-        JButton failureBackButton = new JButton("タイトルへ戻る");
-        failureBackButton.setBounds(191, 337, 217, 50);
+        JButton failureBackButton = new JButton("難易度選択へ戻る");
+        failureBackButton.setBounds(151, 337, 297, 50);
         failureBackButton.setBackground(Color.WHITE);
         failureBackButton.setForeground(new Color(102, 153, 153));
         failureBackButton.setFont(new Font("HGP明朝B", Font.BOLD, 28));
@@ -76,7 +76,7 @@ public class GameGUI extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 game.startGame(); // ゲームデータを初期化
                 resetGUI();       // GUI要素を初期化
-                change.showScreen("Title");
+                change.showScreen("Select");
             }
         });
         failurePanel.add(failureBackButton);
@@ -86,8 +86,8 @@ public class GameGUI extends JPanel {
         add(failurePanel);
 
         
-        JButton backButton = new JButton("タイトルへ戻る");
-        backButton.setBounds(191, 337, 217, 50);
+        JButton backButton = new JButton("難易度選択へ戻る");
+        backButton.setBounds(151, 337, 297, 50);
         backButton.setBackground(new Color(255, 255, 255)); // 深い青色
         backButton.setForeground(new Color(102, 153, 153));            // 白文字
         backButton.setFont(new Font("HGP明朝B", Font.BOLD, 28));
@@ -102,7 +102,7 @@ public class GameGUI extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 game.startGame(); // ゲームデータを初期化してタイトルに戻る
                 resetGUI();       // GUI要素を初期化
-                change.showScreen("Title");
+                change.showScreen("Select");
             }
         });
         clearPanel.add(backButton);
