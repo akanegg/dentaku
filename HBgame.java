@@ -64,16 +64,7 @@ public class HBgame {
                 blow++;  // 数字は一致するが位置が違う
             }
         }
-
-        if (hit == keta) {
-            return "おめでとう！" + (count - 1) + "ターン 答えは: " + player2Num + "でした\n";
-        }
-
-        if (count == 10 && hit != keta) {
-            return "残念！答えは: " + player2Num + " でした\n";
-        }
-
-        return count + "ターン: " + player1 + " -> " + hit + " Hit, " + blow + " Blow\n";
+        return player1;
     }
 
     public int getCount() {
