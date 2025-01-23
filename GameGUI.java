@@ -1,6 +1,11 @@
+package i_group;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.GradientPaint;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.GridLayout;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
@@ -27,6 +32,33 @@ public class GameGUI extends JPanel {
     private JLabel dis;   
     private HBgame game;
     
+    class clearGradientPanel extends JPanel {
+        @Override
+        protected void paintComponent(Graphics g) {
+            super.paintComponent(g);
+            
+            Graphics2D g2d = (Graphics2D) g;
+
+            GradientPaint gradient = new GradientPaint(0, 0, Color.WHITE, 0, 620, Color.RED);
+            g2d.setPaint(gradient);
+            g2d.fillRect(0, 0, 649, 470);
+        }
+    }
+    
+    class failureGradientPanel extends JPanel {
+        @Override
+        protected void paintComponent(Graphics g) {
+            super.paintComponent(g);
+            
+            Graphics2D g2d = (Graphics2D) g;
+            
+            Color color = new Color(13,38,128);
+            GradientPaint gradient = new GradientPaint(0, 0, color, 0, 420, Color.WHITE);
+            g2d.setPaint(gradient);
+            g2d.fillRect(0, 0, 649, 470);
+        }
+    }
+    
 
     public GameGUI(Change change, int keta) {
         setLayout(null); 
@@ -36,7 +68,7 @@ public class GameGUI extends JPanel {
         String correctAnswer = game.getPlayer2Num(); 
         
      // ゲームクリアのパネルを作成
-        clearPanel = new JPanel();
+        clearPanel = new clearGradientPanel();
         clearPanel.setBounds(0, 0, 649, 470);
         clearPanel.setLayout(null);
         
@@ -53,7 +85,7 @@ public class GameGUI extends JPanel {
         add(clearPanel);
         
      // ゲーム失敗のパネルを作成
-        failurePanel = new JPanel();
+        failurePanel = new failureGradientPanel();
         failurePanel.setBounds(0, 0, 649, 470);
         failurePanel.setLayout(null);
 
@@ -64,8 +96,8 @@ public class GameGUI extends JPanel {
         failurePanel.add(failureLabel);
 
        // タイトルへ戻るボタン
-        JButton failureBackButton = new JButton("難易度選択へ戻る");
-        failureBackButton.setBounds(151, 337, 297, 50);
+        JButton failureBackButton = new JButton("ゲーム選択へ戻る");
+        failureBackButton.setBounds(141, 337, 267, 50);
         failureBackButton.setBackground(Color.WHITE);
         failureBackButton.setForeground(new Color(102, 153, 153));
         failureBackButton.setFont(new Font("HGP明朝B", Font.BOLD, 28));
@@ -86,8 +118,8 @@ public class GameGUI extends JPanel {
         add(failurePanel);
 
         
-        JButton backButton = new JButton("難易度選択へ戻る");
-        backButton.setBounds(151, 337, 297, 50);
+        JButton backButton = new JButton("ゲーム選択へ戻る");
+        backButton.setBounds(141, 337, 267, 50);
         backButton.setBackground(new Color(255, 255, 255)); // 深い青色
         backButton.setForeground(new Color(102, 153, 153));            // 白文字
         backButton.setFont(new Font("HGP明朝B", Font.BOLD, 28));
@@ -134,10 +166,6 @@ public class GameGUI extends JPanel {
         table.setForeground(Color.WHITE);
         table.setBackground(new Color(51, 102, 102));
         table.setRowHeight(25);
-        table.getColumnModel().getColumn(0).setPreferredWidth(15);
-        table.getColumnModel().getColumn(1).setPreferredWidth(90);
-        table.getColumnModel().getColumn(2).setPreferredWidth(60);
-        table.getColumnModel().getColumn(3).setPreferredWidth(60);
 
         // セルの中央揃え
         DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
