@@ -1,5 +1,3 @@
-package test2;
-
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
@@ -26,37 +24,91 @@ public class GameGUI extends JPanel {
 	
     private static final long serialVersionUID = 1L;
     private JTable table;
-    private JLabel dis;
-    
+    private JLabel dis;   
     private HBgame game;
     
 
-    public GameGUI(Change change) {
+    public GameGUI(Change change, int keta) {
         setLayout(null); 
         
      // ゲームインスタンス作成
-        game = new HBgame();
-        
+        game = new HBgame(keta);   //桁数を引数とする    
         String correctAnswer = game.getPlayer2Num(); 
         
      // ゲームクリアのパネルを作成
         clearPanel = new JPanel();
-        clearPanel.setBounds(0, 0, 600, 470);
-        clearPanel.setBackground(new Color(0, 0, 0, 120));  // 半透明の黒背景
+        clearPanel.setBounds(0, 0, 649, 470);
+        //clearPanel.setBackground(new Color(0, 0, 0, 120));  // 半透明の黒背景
         clearPanel.setLayout(null);
         
 
         JLabel clearLabel = new JLabel("おめでとう!  " + correctAnswer + "でした。", SwingConstants.CENTER);
         clearLabel.setFont(new Font("HGS明朝B", Font.PLAIN, 35));
-        clearLabel.setForeground(Color.WHITE);
-        clearLabel.setBounds(100, 200, 450, 50);
+        clearLabel.setForeground(Color.BLACK);
+        clearLabel.setBounds(90, 200, 450, 50);
         clearPanel.add(clearLabel);
-       
-
+        
         // 初期状態ではクリア画面を非表示
         clearPanel.setVisible(false);
 
         add(clearPanel);
+        
+     // ゲーム失敗のパネルを作成
+        failurePanel = new JPanel();
+        failurePanel.setBounds(0, 0, 649, 470);
+        failurePanel.setLayout(null);
+
+        JLabel failureLabel = new JLabel("残念！ 答えは" + correctAnswer + "でした。", SwingConstants.CENTER);
+        failureLabel.setFont(new Font("HGS明朝B", Font.PLAIN, 35));
+        failureLabel.setForeground(Color.BLACK);
+        failureLabel.setBounds(90, 200, 450, 50);
+        failurePanel.add(failureLabel);
+
+       // タイトルへ戻るボタン
+        JButton failureBackButton = new JButton("タイトルへ戻る");
+        failureBackButton.setBounds(191, 337, 217, 50);
+        failureBackButton.setBackground(Color.WHITE);
+        failureBackButton.setForeground(new Color(102, 153, 153));
+        failureBackButton.setFont(new Font("HGP明朝B", Font.BOLD, 28));
+        failureBackButton.setBorderPainted(false);
+        failureBackButton.setFocusPainted(false);
+        failureBackButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                game.startGame(); // ゲームデータを初期化
+                resetGUI();       // GUI要素を初期化
+                change.showScreen("Title");
+            }
+        });
+        failurePanel.add(failureBackButton);
+
+        // 初期状態では失敗画面を非表示
+        failurePanel.setVisible(false);
+        add(failurePanel);
+
+        
+        JButton backButton = new JButton("タイトルへ戻る");
+        backButton.setBounds(191, 337, 217, 50);
+        backButton.setBackground(new Color(255, 255, 255)); // 深い青色
+        backButton.setForeground(new Color(102, 153, 153));            // 白文字
+        backButton.setFont(new Font("HGP明朝B", Font.BOLD, 28));
+        backButton.setBorderPainted(false); // ボタンの枠線を非表示
+        backButton.setFocusPainted(false); // フォーカス時の枠線を非表示
+        
+        for (ActionListener al : backButton.getActionListeners()) {
+            backButton.removeActionListener(al);
+        } //actionlistenerが重複しないように調整
+        backButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                game.startGame(); // ゲームデータを初期化してタイトルに戻る
+                resetGUI();       // GUI要素を初期化
+                change.showScreen("Title");
+            }
+        });
+        clearPanel.add(backButton);
+        
+        
 
         // テーブル作成
         table = new JTable();
@@ -209,6 +261,25 @@ public class GameGUI extends JPanel {
 		
     }
     
+    private void resetGUI() {
+        DefaultTableModel model = (DefaultTableModel) table.getModel();
+        for (int i = 1; i <= 10; i++) {
+            model.setValueAt(null, i, 1);
+            model.setValueAt(null, i, 2);
+            model.setValueAt(null, i, 3);
+        }
+        
+
+        dis.setText("");        
+        String correctAnswer = game.getPlayer2Num(); 
+        JLabel clearLabel = (JLabel) clearPanel.getComponent(0); // clearPanel の最初のコンポーネントを取得
+        clearLabel.setText("おめでとう!  " + correctAnswer + "でした。"); // 新しい正解番号を設定
+                
+        clearPanel.setVisible(false);
+        table.setVisible(true);
+        buttonsPanel.setVisible(true);
+    }
+    
 
     // テーブルの更新メソッド
     public void updateTable(int count, String number, int hit, int blow) {
@@ -222,7 +293,10 @@ public class GameGUI extends JPanel {
         clearPanel.setVisible(true);  // クリア画面を表示
         table.setVisible(false);
         buttonsPanel.setVisible(false);
+    }   
+    public void showFailureScreen() {
+        failurePanel.setVisible(true); // 失敗画面を表示
+        table.setVisible(false);
+        buttonsPanel.setVisible(false);
     }
-   
-    
 }
