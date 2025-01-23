@@ -38,7 +38,6 @@ public class GameGUI extends JPanel {
      // ゲームクリアのパネルを作成
         clearPanel = new JPanel();
         clearPanel.setBounds(0, 0, 649, 470);
-        //clearPanel.setBackground(new Color(0, 0, 0, 120));  // 半透明の黒背景
         clearPanel.setLayout(null);
         
 
