@@ -1,8 +1,10 @@
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.JLabel;
 
 public class SelectPanel extends JPanel {
 
@@ -22,6 +24,9 @@ public class SelectPanel extends JPanel {
         setLayout(null);
         add(backButton);
         
+        // 背景色
+        setBackground(new Color(224, 255, 255));
+        
         JButton btn1 = new JButton("２ケタ　簡単！");
         btn1.setFont(new Font("HGSｺﾞｼｯｸE", Font.PLAIN, 20));
         btn1.setBounds(163, 70, 251, 50);
@@ -36,6 +41,11 @@ public class SelectPanel extends JPanel {
         btn3.setFont(new Font("HGSｺﾞｼｯｸE", Font.PLAIN, 20));
         btn3.setBounds(163, 258, 251, 50);
         add(btn3);
+        
+        JLabel Label = new JLabel("コース選択");
+        Label.setFont(new Font("ＭＳ ゴシック", Font.BOLD, 20));
+        Label.setBounds(235, 10, 179, 33);
+        add(Label);
         
         btn1.addActionListener(new ActionListener() {
             @Override
